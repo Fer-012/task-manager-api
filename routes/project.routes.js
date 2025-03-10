@@ -134,6 +134,33 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
+router.patch('/status/:projectId', authMiddleware, async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const { status } = req.body;
+
+    // Validate status
+    const validStatuses = ['Ongoing', 'Completed'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ success: false, message: 'Invalid status value' });
+    }
+
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ success: false, message: 'Project not found' });
+    }
+
+    // Update project status
+    project.status = status;
+    await project.save();
+
+    res.json({ success: true, message: 'Project status updated successfully', project });
+  } catch (error) {
+    console.error('Error updating project status:', error);
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
+  }
+});
+
 
 
 module.exports = router;
