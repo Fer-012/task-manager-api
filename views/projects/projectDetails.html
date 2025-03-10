@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <!-- Added missing Feather icons CSS -->
   <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
-  <title>Details Project | TaskHive</title>
+  <title>Details Project</title>
 </head>
 
 <body>
@@ -196,8 +196,7 @@
                             </div>
                         </div>
 
-                        <!-- Error message -->
-                        <div id="errorMessage" class="alert alert-danger d-none" role="alert"></div>
+                       
                     </div>
                 </div>
             </div>
@@ -219,7 +218,7 @@
     return isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString();
   };
 
-  // Fonction pour mettre à jour l'UI
+  // Fonction pour mettre à jour
   const updateProjectUI = (project) => {
     document.getElementById('projectName').textContent = project.name || 'Not specified';
     document.getElementById('projectDescription').textContent = project.description || 'No description';
